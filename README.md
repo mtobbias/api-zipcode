@@ -1,5 +1,9 @@
 # ZipCode API
 
+https://api-zipcode.herokuapp.com/v1/api/zips/br/73255903
+https://api-zipcode.herokuapp.com/v1/api/zips/pt/9700413
+
+
 ### Reference Documentation
 
 For further reference, please consider the following sections:

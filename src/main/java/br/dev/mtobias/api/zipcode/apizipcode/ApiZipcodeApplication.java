@@ -10,6 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @SpringBootApplication
 @EnableFeignClients()
+//@EnableSwagger2
 public class ApiZipcodeApplication {
 
     public static void main(String[] args) {

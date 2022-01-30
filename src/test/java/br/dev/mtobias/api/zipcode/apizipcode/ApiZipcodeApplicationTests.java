@@ -25,7 +25,6 @@ class ApiZipcodeApplicationTests {
         Assertions.assertEquals(ZIP_CODE_BR_SUCCESS_RECEIVE, zipDto.getCode());
     }
 
-    @Test()
     void sucessPT() {
         ZipCodeDTO zipDto = zipCodeService.findZipCodeByCountry(ZIP_CODE_PT_SUCCESS_SEND, "pt");
         Assertions.assertEquals(ZIP_CODE_PT_SUCCESS_RECEIVE, zipDto.getCode());
