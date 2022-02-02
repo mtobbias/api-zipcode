@@ -1,4 +1,4 @@
-package br.dev.mtobias.api.zipcode.apizipcode.services;
+package br.dev.mtobias.api.zipcode.apizipcode.mapper;
 
 import br.dev.mtobias.api.zipcode.apizipcode.rest.dto.ZipCodeDTO;
 import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.br.model.ApiCepComModel;

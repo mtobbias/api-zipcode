@@ -23,7 +23,7 @@ public class ZipCodeController {
         try {
              zipCodeDto = zipCodeService.findZipCodeByCountry(country,zipCode);
         }catch (IllegalArgumentException err){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.ok(zipCodeDto);
     }

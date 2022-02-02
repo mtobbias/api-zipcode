@@ -1,9 +1,10 @@
 package br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.pt;
 
 import br.dev.mtobias.api.zipcode.apizipcode.rest.dto.ZipCodeDTO;
-import br.dev.mtobias.api.zipcode.apizipcode.services.ZipCodeMapper;
+import br.dev.mtobias.api.zipcode.apizipcode.mapper.ZipCodeMapper;
 import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.ServiceCountry;
 import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.pt.model.ApiDuminioComModel;
+import feign.codec.DecodeException;
 import java.util.List;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,12 @@ public class ServiceCountryPT implements ServiceCountry {
     private final ZipCodeMapper mapper;
 
     public ApiDuminioComModel findAllZip(String zipCode) {
-        Optional<List<ApiDuminioComModel>> allZip = service.findAllZip(zipCode);
+        Optional<List<ApiDuminioComModel>> allZip = null;
+        try{
+            allZip = service.findAllZip(zipCode);
+        }catch (DecodeException e){
+                throw new IllegalArgumentException("");
+        }
         List<ApiDuminioComModel> apiDuminioComModels = allZip.orElseThrow(() -> new IllegalArgumentException(""));
         if(apiDuminioComModels.isEmpty()){
             throw new IllegalArgumentException("");

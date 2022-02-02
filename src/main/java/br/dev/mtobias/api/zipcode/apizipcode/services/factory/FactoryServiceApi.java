@@ -1,4 +1,4 @@
-package br.dev.mtobias.api.zipcode.apizipcode.services;
+package br.dev.mtobias.api.zipcode.apizipcode.services.factory;
 
 import br.dev.mtobias.api.zipcode.apizipcode.rest.dto.ZipCodeDTO;
 import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.ServiceCountry;
@@ -16,19 +16,16 @@ public class FactoryServiceApi {
     private ServiceCountryPT apiPt;
 
     public ZipCodeDTO findZipCodeByCountry(String country, String zipCode ){
-        ZipCodeDTO zip = null;
         if(country.equals("br")){
-            zip = findZip(apiBr, zipCode);
+            return findZip(apiBr, zipCode);
         }else if(country.equals("pt")){
-             zip = findZip(apiPt, zipCode);
+             return findZip(apiPt, zipCode);
         }
-        zip.setCountry(country);
-        return zip;
+        return new ZipCodeDTO();
     }
 
     private ZipCodeDTO findZip(ServiceCountry service, String zipCode){
-        ZipCodeDTO zip = service.findZip(zipCode);
-        return  zip;
+        return service.findZip(zipCode);
     }
 
 }
