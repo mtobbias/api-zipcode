@@ -11,11 +11,9 @@ services:
     networks:
       - utils-api-network
   api-sonar:
-    image: sonarqube:lts-alpine
+    image: sonarqube:community
     ports:
       - '9000:9000'
-    environment:
-      - JAVA_VERSION=jdk-11.0.11+9
     networks:
       - utils-api-network
   api-redis:

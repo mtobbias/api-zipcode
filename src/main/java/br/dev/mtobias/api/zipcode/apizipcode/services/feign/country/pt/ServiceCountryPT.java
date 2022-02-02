@@ -18,7 +18,7 @@ public class ServiceCountryPT implements ServiceCountry {
     private final ZipCodeMapper mapper;
 
     public ApiDuminioComModel findAllZip(String zipCode) {
-        Optional<List<ApiDuminioComModel>> allZip = null;
+        Optional<List<ApiDuminioComModel>> allZip = Optional.empty();
         try{
             allZip = service.findAllZip(zipCode);
         }catch (DecodeException e){
