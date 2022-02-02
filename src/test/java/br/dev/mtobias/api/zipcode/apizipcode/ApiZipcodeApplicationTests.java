@@ -3,9 +3,7 @@ package br.dev.mtobias.api.zipcode.apizipcode;
 import br.dev.mtobias.api.zipcode.apizipcode.rest.dto.ZipCodeDTO;
 import br.dev.mtobias.api.zipcode.apizipcode.services.ZipCodeService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 class ApiZipcodeApplicationTests {
     public static final String ZIP_CODE_BR_SUCCESS_SEND = "73255903";

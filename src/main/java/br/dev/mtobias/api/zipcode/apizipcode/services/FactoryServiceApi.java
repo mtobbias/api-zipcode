@@ -1,51 +1,34 @@
 package br.dev.mtobias.api.zipcode.apizipcode.services;
 
 import br.dev.mtobias.api.zipcode.apizipcode.rest.dto.ZipCodeDTO;
-import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.FeignApiModel;
-import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.br.ApiCepCom;
-import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.br.model.ApiCepComModel;
-import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.pt.ApiDuminioCom;
-import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.pt.model.ApiDuminioComModel;
-import java.util.List;
-import java.util.Objects;
+import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.ServiceCountry;
+import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.br.ServiceCountryBR;
+import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.pt.ServiceCountryPT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FactoryServiceApi {
     @Autowired
-    private ApiCepCom apiBr;
+    private ServiceCountryBR apiBr;
 
     @Autowired
-    private ApiDuminioCom apiPt;
+    private ServiceCountryPT apiPt;
 
-    public  ZipCodeDTO findZipCodeByCountry(String country,String zipCode ){
+    public ZipCodeDTO findZipCodeByCountry(String country, String zipCode ){
+        ZipCodeDTO zip = null;
         if(country.equals("br")){
-            ApiCepComModel zip = this.apiBr.findZip(zipCode);
-            return createDto(country, zip);
+            zip = findZip(apiBr, zipCode);
         }else if(country.equals("pt")){
-            List<ApiDuminioComModel> zip = this.apiPt.findZip(zipCode);
-            return createDto(country, zip.get(0));
+             zip = findZip(apiPt, zipCode);
         }
-//        FeignApiModel[] zip = getService(country).findZip(zipCode);
-        return null;
+        zip.setCountry(country);
+        return zip;
     }
 
-
-    private ZipCodeDTO createDto(String country, FeignApiModel zip) {
-        ZipCodeDTO zipCodeDTO = null;
-        if(zip instanceof ApiCepComModel){
-                    zipCodeDTO = ZipCodeMapper.INSTANCE.fromModel((ApiCepComModel) zip);
-        }
-        if(zip instanceof ApiDuminioComModel){
-                   zipCodeDTO = ZipCodeMapper.INSTANCE.fromModel((ApiDuminioComModel) zip);
-        }
-
-        if(Objects.isNull(zipCodeDTO.getCode())){
-            throw new IllegalArgumentException("ZipCode not found for country "+country);
-        }
-        zipCodeDTO.setCountry(country);
-        return zipCodeDTO;
+    private ZipCodeDTO findZip(ServiceCountry service, String zipCode){
+        ZipCodeDTO zip = service.findZip(zipCode);
+        return  zip;
     }
 
 }
