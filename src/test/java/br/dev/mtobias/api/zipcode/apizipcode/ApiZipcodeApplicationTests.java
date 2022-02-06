@@ -1,35 +1,26 @@
 package br.dev.mtobias.api.zipcode.apizipcode;
-
-import br.dev.mtobias.api.zipcode.apizipcode.rest.dto.ZipCodeDTO;
-import br.dev.mtobias.api.zipcode.apizipcode.services.ZipCodeService;
-import org.junit.jupiter.api.Assertions;
+import br.dev.mtobias.api.zipcode.apizipcode.mapper.ZipCodeMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+@SpringBootTest(
+        classes = {ApiZipcodeApplication.class, ZipCodeMapperImpl.class},
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
+)
+public abstract class ApiZipcodeApplicationTests {
 
-class ApiZipcodeApplicationTests {
-    public static final String ZIP_CODE_BR_SUCCESS_SEND = "73255903";
-    public static final String ZIP_CODE_BR_SUCCESS_RECEIVE = "73255-903";
-
-    public static final String ZIP_CODE_PT_SUCCESS_SEND = "9700413";
-    public static final String ZIP_CODE_PT_SUCCESS_RECEIVE = "9700-413";
-
+    @LocalServerPort
+    private int port;
 
     @Autowired
-    private ZipCodeService zipCodeService;
+    private TestRestTemplate restTemplate;
 
-    void sucess() {
-        ZipCodeDTO zipDto = zipCodeService.findZipCodeByCountry(ZIP_CODE_BR_SUCCESS_SEND, "br");
-        Assertions.assertEquals(ZIP_CODE_BR_SUCCESS_RECEIVE, zipDto.getCode());
+    protected int getPort() {
+        return port;
     }
 
-    void sucessPT() {
-        ZipCodeDTO zipDto = zipCodeService.findZipCodeByCountry(ZIP_CODE_PT_SUCCESS_SEND, "pt");
-        Assertions.assertEquals(ZIP_CODE_PT_SUCCESS_RECEIVE, zipDto.getCode());
-    }
-
-    void sholdReturnError() {
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () ->{
-            ZipCodeDTO zipDto = zipCodeService.findZipCodeByCountry("", "br");
-        });
-        Assertions.assertEquals("Invalid zipcode",thrown.getMessage());
+    protected TestRestTemplate getRestTemplate() {
+        return restTemplate;
     }
 }

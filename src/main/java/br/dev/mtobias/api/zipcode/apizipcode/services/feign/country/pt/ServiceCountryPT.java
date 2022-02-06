@@ -18,17 +18,14 @@ public class ServiceCountryPT implements ServiceCountry {
     private final ZipCodeMapper mapper;
 
     public ApiDuminioComModel findAllZip(String zipCode) {
-        Optional<List<ApiDuminioComModel>> allZip = Optional.empty();
+        Optional<List<ApiDuminioComModel>> allZip;
         try{
             allZip = service.findAllZip(zipCode);
+            List<ApiDuminioComModel> apiDuminioComModels = allZip.orElseThrow(() -> new IllegalArgumentException(""));
+            return apiDuminioComModels.get(0);
         }catch (DecodeException e){
                 throw new IllegalArgumentException("");
         }
-        List<ApiDuminioComModel> apiDuminioComModels = allZip.orElseThrow(() -> new IllegalArgumentException(""));
-        if(apiDuminioComModels.isEmpty()){
-            throw new IllegalArgumentException("");
-        }
-        return apiDuminioComModels.get(0);
     }
 
     @Override

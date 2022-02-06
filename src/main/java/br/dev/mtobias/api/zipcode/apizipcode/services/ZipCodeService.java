@@ -1,5 +1,6 @@
 package br.dev.mtobias.api.zipcode.apizipcode.services;
 
+import br.dev.mtobias.api.zipcode.apizipcode.enums.CountryEnum;
 import br.dev.mtobias.api.zipcode.apizipcode.rest.dto.ZipCodeDTO;
 import br.dev.mtobias.api.zipcode.apizipcode.services.factory.FactoryServiceApi;
 import java.util.Objects;
@@ -12,6 +13,10 @@ import org.springframework.stereotype.Service;
 public class ZipCodeService {
 
     private final FactoryServiceApi factoryServiceApi;
+
+    public ZipCodeDTO findZipCodeByCountry(CountryEnum country, String zipCode) {
+            return findZipCodeByCountry(country.getCountry(),zipCode);
+    }
     public ZipCodeDTO findZipCodeByCountry(String country,String zipCode) {
         validateData(zipCode,country);
         return factoryServiceApi.findZipCodeByCountry(country, zipCode);
@@ -19,11 +24,8 @@ public class ZipCodeService {
 
     private void validateData(String zipCode, String country) {
         if(
-                Objects.isNull(zipCode) ||
-                        Objects.isNull(country) ||
                         zipCode.isEmpty() ||
                         country.isEmpty()
-
         ){
             throw  new IllegalArgumentException("Invalid zipcode");
         }
