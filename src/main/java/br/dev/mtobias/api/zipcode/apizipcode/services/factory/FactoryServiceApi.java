@@ -16,12 +16,14 @@ public class FactoryServiceApi {
     private ServiceCountryPT apiPt;
 
     public ZipCodeDTO findZipCodeByCountry(String country, String zipCode ){
+        ZipCodeDTO zip = new ZipCodeDTO();
         if(country.equals("br")){
-            return findZip(apiBr, zipCode);
+            zip = findZip(apiBr, zipCode);
         }else if(country.equals("pt")){
-             return findZip(apiPt, zipCode);
+            zip = findZip(apiPt, zipCode);
         }
-        return new ZipCodeDTO();
+        zip.setCountry(country);
+        return zip;
     }
 
     private ZipCodeDTO findZip(ServiceCountry service, String zipCode){

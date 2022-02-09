@@ -19,7 +19,6 @@ public class ServiceCountryBR implements ServiceCountry {
     public ZipCodeDTO findZip(String zipCode) {
         Optional<ApiCepComModel> zip = service.findZip(zipCode);
         ApiCepComModel zipModel = validateZipCode(zip);
-
         return mapper.fromModel(zipModel);
     }
 
