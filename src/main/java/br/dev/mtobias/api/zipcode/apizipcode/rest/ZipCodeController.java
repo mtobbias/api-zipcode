@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("v1/api/zips")
 public class ZipCodeController {
 
-    @Value("${ptapi-key}")
+    @Value("${ptapi.key}")
     private String apikey;
     private ZipCodeService zipCodeService;
 

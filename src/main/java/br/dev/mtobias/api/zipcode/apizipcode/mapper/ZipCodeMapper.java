@@ -6,7 +6,6 @@ import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.br.model.Api
 import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.pt.model.ApiDuminioComModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", imports = {br.dev.mtobias.api.zipcode.apizipcode.utils.Utils.class})
