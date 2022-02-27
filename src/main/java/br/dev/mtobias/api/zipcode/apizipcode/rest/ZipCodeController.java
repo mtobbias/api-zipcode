@@ -2,9 +2,7 @@ package br.dev.mtobias.api.zipcode.apizipcode.rest;
 
 import br.dev.mtobias.api.zipcode.apizipcode.rest.dto.ZipCodeDTO;
 import br.dev.mtobias.api.zipcode.apizipcode.services.ZipCodeService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,19 +23,7 @@ public class ZipCodeController {
 
     @GetMapping("/{country}/{zipCode}")
     public ResponseEntity<ZipCodeDTO> index(@PathVariable("country") String country, @PathVariable("zipCode") String zipCode){
-        ZipCodeDTO zipCodeDto = null;
-        try {
-             zipCodeDto = zipCodeService.findZipCodeByCountry(country,zipCode);
-        }catch (IllegalArgumentException err){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return ResponseEntity.ok(zipCodeDto);
+        return ResponseEntity.ok(zipCodeService.findZipCodeByCountry(new ZipCodeDTO(country,zipCode)));
     }
-
-    @GetMapping("/abc")
-    public ResponseEntity<String> index2(){
-        return ResponseEntity.ok(apikey);
-    }
-
 
 }

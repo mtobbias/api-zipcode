@@ -6,23 +6,23 @@ import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.br.model.Api
 import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.pt.model.ApiDuminioComModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", imports = {br.dev.mtobias.api.zipcode.apizipcode.utils.Utils.class})
 public interface ZipCodeMapper {
-    ZipCodeMapper INSTANCE = Mappers.getMapper(ZipCodeMapper.class);
-
+    @Mapping(source ="code", target = "postalCode" )
     ZipCodeDTO fromModel(ApiCepComModel model);
 
-    @Mapping(source ="codigoPostal", target = "code" )
+    @Mapping(source ="codigoPostal", target = "postalCode" )
     @Mapping(source ="morada", target = "address")
     @Mapping(source ="freguesia", target = "district")
-    @Mapping(source ="distrito", target = "city")
-    @Mapping(source ="codigoDistrito", target = "state")
+    @Mapping(source ="concelho", target = "city")
+    @Mapping(source ="distrito", target = "state")
     ZipCodeDTO fromModel(ApiDuminioComModel model);
 
-    @Mapping(target ="id", expression = "java(br.dev.mtobias.api.zipcode.apizipcode.utils.Utils.generateIdZipCodeRedis(zipCodeByCountry.getCountry(),zipCodeByCountry.getCode()))")
-    ZipCodeModel toModelRedis(ZipCodeDTO zipCodeByCountry);
+    @Mapping(target ="id", expression = "java(br.dev.mtobias.api.zipcode.apizipcode.utils.Utils.generateIdZipCodeRedis(zipCodeByCountry.getCountry(),zipCodeByCountry.getPostalCode()))")
+    @Mapping(source = "postalCode", target = "code")
+    ZipCodeModel modelToDTO(ZipCodeDTO zipCodeByCountry);
 
-    ZipCodeDTO toDtoFromModel (ZipCodeModel model);
+    @Mapping(source = "code", target = "postalCode")
+    ZipCodeDTO dtoToModel(ZipCodeModel model);
 }

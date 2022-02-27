@@ -4,30 +4,32 @@ import br.dev.mtobias.api.zipcode.apizipcode.rest.dto.ZipCodeDTO;
 import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.ServiceCountry;
 import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.br.ServiceCountryBR;
 import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.pt.ServiceCountryPT;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
+@AllArgsConstructor
 public class FactoryServiceApi {
-    @Autowired
-    private ServiceCountryBR apiBr;
 
-    @Autowired
-    private ServiceCountryPT apiPt;
+    private final ServiceCountryBR serviceCountryBR;
+    private final ServiceCountryPT serviceCountryPT;
 
-    public ZipCodeDTO findZipCodeByCountry(String country, String zipCode ){
-        ZipCodeDTO zip = new ZipCodeDTO();
-        if(country.equals("br")){
-            zip = findZip(apiBr, zipCode);
-        }else if(country.equals("pt")){
-            zip = findZip(apiPt, zipCode);
-        }
-        zip.setCountry(country);
-        return zip;
+    public Optional<ZipCodeDTO> findZipCodeByCountry(ZipCodeDTO zipFind){
+        ZipCodeDTO zipReturn = findZip(getServiceByCountry(zipFind.getCountry()),zipFind.getPostalCode());
+        zipReturn.setCountry(zipFind.getCountry());
+        return Optional.of(zipReturn);
     }
 
     private ZipCodeDTO findZip(ServiceCountry service, String zipCode){
         return service.findZip(zipCode);
     }
-
+    public ServiceCountry getServiceByCountry(String byCountry){
+        switch (byCountry.toLowerCase()){
+            case "pt": return serviceCountryPT;
+            case "br": return serviceCountryBR;
+            default: return null;
+        }
+    }
 }

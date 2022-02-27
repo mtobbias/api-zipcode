@@ -1,10 +1,11 @@
 package br.dev.mtobias.api.zipcode.apizipcode.redis.model;
 
 import java.io.Serializable;
+
+import br.dev.mtobias.api.zipcode.apizipcode.utils.Utils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.index.Indexed;
@@ -24,13 +25,8 @@ public class ZipCodeModel implements Serializable {
     private String state;
     private String country;
 
-    public ZipCodeModel(String country, String zipCode) {
-        this.country =country;
-        this.code = zipCode;
-    }
-
     public static String createId(String country, String zipCode) {
-        return new ZipCodeModel(country,zipCode).toString();
+        return country+"_"+ Utils.removeNoNumbers(zipCode);
     }
 
     @Override
