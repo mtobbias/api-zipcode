@@ -4,16 +4,18 @@ import java.io.Serializable;
 
 import br.dev.mtobias.api.zipcode.apizipcode.utils.Utils;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.index.Indexed;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @RedisHash(value = "zipCodeModel")
+@Getter
+@Setter
 public class ZipCodeModel implements Serializable {
     @Id
     @Indexed

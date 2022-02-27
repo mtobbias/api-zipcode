@@ -11,14 +11,14 @@ import org.springframework.boot.web.server.LocalServerPort;
 public abstract class ApiZipcodeApplicationTests {
 
     @LocalServerPort
-    private int port;
+    protected Integer port;
 
     @Autowired
     private TestRestTemplate restTemplate;
 
-    protected int getPort() {
-        return port;
-    }
+
+    protected static final String BRAZIL ="br";
+    protected static final String PORTUGAL ="PT";
 
     protected TestRestTemplate getRestTemplate() {
         return restTemplate;

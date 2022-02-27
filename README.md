@@ -4,6 +4,8 @@ https://api-zipcode.herokuapp.com/v1/api/zips/br/73255903
 https://api-zipcode.herokuapp.com/v1/api/zips/pt/9700413
 
 mvn sonar:sonar -Dsonar.projectKey=api-zipcode -Dsonar.host.url=http://127.0.0.1:9000 -Dsonar.login=fac5eda48eb24d1cc410c3a10f8e2c02941fcf84
+swagger-ui
+https://api-zipcode.herokuapp.com
 
 ### Reference Documentation
 

@@ -1,10 +1,10 @@
 package br.dev.mtobias.api.zipcode.apizipcode.rest.dto;
 
 import br.dev.mtobias.api.zipcode.apizipcode.validators.CountryValidator;
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
@@ -13,9 +13,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Data
 @NoArgsConstructor
 @RedisHash("zipCodeDTO")
+@Getter
+@Setter
 public class ZipCodeDTO {
 
     @NotNull(message = "id not to be empty or null")
