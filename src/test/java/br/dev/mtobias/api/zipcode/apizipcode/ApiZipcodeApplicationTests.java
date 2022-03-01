@@ -18,8 +18,9 @@ public abstract class ApiZipcodeApplicationTests {
 
     public static final String COUNTRY_INVALID = "0";
 
-    protected static final String ERROR_ZIP_6 = "000000";
     protected static final String ERROR_ZIP_8 = "00000000";
+    protected static final String ERROR_ZIP_6 = "000000";
+    protected static final String ERROR_ZIP_9 = "000000000";
     protected static final String ERROR_COUNTRY_3 = "BRR";
     protected static final String ERROR_COUNTRY_VALID_NOT_IMPLEMENTED = "jp";
 

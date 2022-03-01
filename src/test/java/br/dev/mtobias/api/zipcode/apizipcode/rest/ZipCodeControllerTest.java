@@ -77,13 +77,13 @@ class ZipCodeControllerTest extends ApiZipcodeApplicationTests {
     void should_be_null_when_send_cross_country_with_valid_pt_zip() {
         assertThat(getRestTemplate()).isNotNull();
         ResponseEntity<String> responseEntity = this.getRestTemplate().exchange(getUrlFromZipCode(BRAZIL, PT_ZIP_VALID), HttpMethod.GET, new HttpEntity<Object>(""), String.class);
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
     @Test
     void should_be_null_when_send_cross_country_with_valid_br_zip() {
         assertThat(getRestTemplate()).isNotNull();
-        ResponseEntity<String> responseEntity = this.getRestTemplate().exchange(getUrlFromZipCode(BRAZIL, BR_ZIP_VALID), HttpMethod.GET, new HttpEntity<Object>(""), String.class);
+        ResponseEntity<String> responseEntity = this.getRestTemplate().exchange(getUrlFromZipCode(PORTUGAL, BR_ZIP_VALID), HttpMethod.GET, new HttpEntity<Object>(""), String.class);
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
 
@@ -97,7 +97,7 @@ class ZipCodeControllerTest extends ApiZipcodeApplicationTests {
     @Test
     void should_be_null_when_send_invalid_zip_size_8() {
         assertThat(getRestTemplate()).isNotNull();
-        ResponseEntity<String> responseEntity = this.getRestTemplate().exchange(getUrlFromZipCode(BRAZIL, ERROR_ZIP_8), HttpMethod.GET, new HttpEntity<Object>(""), String.class);
+        ResponseEntity<String> responseEntity = this.getRestTemplate().exchange(getUrlFromZipCode(BRAZIL, ERROR_ZIP_9), HttpMethod.GET, new HttpEntity<Object>(""), String.class);
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
 
