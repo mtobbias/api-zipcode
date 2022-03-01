@@ -5,8 +5,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@FeignClient(name = "apicepCom", url = "${feignApi.apicepCom.url}")
+@FeignClient(name = "apicepCom", url = "${feign.api.apicepcom.url}")
 public interface ApiCepCom{
-    @RequestMapping("{zipCode}${feignApi.apicepCom.postfix}")
+    @RequestMapping("{zipCode}${feign.api.apicepcom.postfix}")
     Optional<ApiCepComModel> findZip(@PathVariable("zipCode") String zipCode);
 }

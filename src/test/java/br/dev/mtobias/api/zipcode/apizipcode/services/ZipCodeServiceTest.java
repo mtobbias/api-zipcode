@@ -6,19 +6,13 @@ import br.dev.mtobias.api.zipcode.apizipcode.rest.dto.ZipCodeDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class ZipCodeServiceTest extends ApiZipcodeApplicationTests {
 
-    public static final String NOTFOUND_ZIP_CODE_BR_SUCCESS_SEND = "00000000";
-    public static final String ZIP_CODE_BR_SUCCESS_SEND = "73255903";
-    public static final String ZIP_CODE_BR_SUCCESS_RECEIVE = "73255-903";
-    public static final ZipCodeDTO INVALID_ZIP_CODE_DTO = new ZipCodeDTO(BRAZIL, "");
-    public static final ZipCodeDTO INVALID_COUNTRY_DTO = new ZipCodeDTO("", ZIP_CODE_BR_SUCCESS_SEND);
-    public static final ZipCodeDTO INVALID_ZIP_COUNTRY_DTO = new ZipCodeDTO("", "");
-
-    public static final ZipCodeDTO NOTFOUND_ZIP_CODE_DTO = new ZipCodeDTO(BRAZIL, NOTFOUND_ZIP_CODE_BR_SUCCESS_SEND);
 
 
     @Autowired
@@ -28,8 +22,8 @@ class ZipCodeServiceTest extends ApiZipcodeApplicationTests {
     void should_be_success_when_send_valid_zip_br_service() {
         assertNotNull(getRestTemplate());
         assertNotNull(service);
-        ZipCodeDTO zipCodeByCountry = service.findZipCodeByCountry(new ZipCodeDTO(BRAZIL, ZIP_CODE_BR_SUCCESS_SEND));
-        assertEquals(ZIP_CODE_BR_SUCCESS_RECEIVE, zipCodeByCountry.getPostalCode());
+        ZipCodeDTO zipCodeByCountry = service.findZipCodeByCountry(new ZipCodeDTO(BRAZIL, BR_ZIP_VALID));
+        assertEquals(BR_ZIP_VALID_RECEIVER, zipCodeByCountry.getPostalCode());
     }
 
     @Test
