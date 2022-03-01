@@ -3,10 +3,12 @@ package br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.pt.model;
 import br.dev.mtobias.api.zipcode.apizipcode.services.feign.country.FeignApiModel;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Data
+@Getter
+@Setter
 public class ApiDuminioComModel implements FeignApiModel {
     @JsonAlias("CodigoPostal")
     private String codigoPostal;
