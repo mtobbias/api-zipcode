@@ -15,10 +15,20 @@
     <name>api-zipcode</name>
     <description>api-zipcode</description>
     <properties>
+        <feign-jackson.version>10.12</feign-jackson.version>
+        <hibernate-core.version>5.4.32.Final</hibernate-core.version>
+        <jackson-databind.version>2.13.1</jackson-databind.version>
+        <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+        <lombok.version>1.18.22</lombok.version>
+        <mapstruct-processor.version>1.4.2.Final</mapstruct-processor.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <pring-cloud-dependencies.version>2021.0.0</pring-cloud-dependencies.version>
+        <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
         <java.version>11</java.version>
-        <spring-cloud.version>2021.0.0</spring-cloud.version>
-
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -63,24 +73,24 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
-            <version>1.5.0.Beta1</version>
+            <version>${mapstruct.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.13.1</version>
+            <version>${jackson-databind.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-jackson</artifactId>
-            <version>10.12</version>
+            <version>${feign-jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
+            <version>${springfox-boot-starter.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -90,7 +100,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.4.32.Final</version>
+            <version>${hibernate-core.version}</version>
         </dependency>
 
         <dependency>
@@ -104,7 +114,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+                <version>${pring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -130,7 +140,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <compilerArgs>
                         <arg>
@@ -148,18 +158,18 @@
                         <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
-                            <version>1.5.0.Beta1</version>
+                            <version>${mapstruct-processor.version}</version>
                         </path>
 
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>1.18.22</version>
+                            <version>${lombok.version}</version>
                         </path>
                         <dependency>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok-mapstruct-binding</artifactId>
-                            <version>0.2.0</version>
+                            <version>${lombok-mapstruct-binding.version}</version>
                         </dependency>
                     </annotationProcessorPaths>
                 </configuration>
@@ -168,7 +178,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.2</version>
+                <version>${jacoco-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
