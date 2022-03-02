@@ -1,5 +1,14 @@
 
 # API ZIPCODE
+
+In this project do you can find a address by zipcode, in this time are only Brazil and Portugal.
+
+
+for a Brazil zip code i used http://apicep.com
+and for a Portgual zip code i used api https://duminio.com/
+
+heroku.com
+
 [https://api-zipcode.herokuapp.com/swagger-ui/](https://api-zipcode.herokuapp.com/swagger-ui/)
 
 ![enter image description here](assets/img001.png)
