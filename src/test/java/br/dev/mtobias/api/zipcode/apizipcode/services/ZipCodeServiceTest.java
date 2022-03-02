@@ -19,7 +19,7 @@ class ZipCodeServiceTest extends ApiZipcodeApplicationTests {
     private ZipCodeService service;
 
     @Test
-    void should_be_success_when_send_valid_zip_br_service() {
+    void should_success_when_send_valid_zip_and_country_brazil() {
         assertNotNull(getRestTemplate());
         assertNotNull(service);
         ZipCodeDTO zipCodeByCountry = service.findZipCodeByCountry(new ZipCodeDTO(BRAZIL, BR_ZIP_VALID));
@@ -27,29 +27,36 @@ class ZipCodeServiceTest extends ApiZipcodeApplicationTests {
     }
 
     @Test
-    void should_be_error_when_send_invalid_zip_br_service() {
+    void should_success_when_send_valid_zip_and_country_portugal() {
+        assertNotNull(getRestTemplate());
+        assertNotNull(service);
+        ZipCodeDTO zipCodeByCountry = service.findZipCodeByCountry(new ZipCodeDTO(PORTUGAL, PT_ZIP_VALID));
+        assertEquals(PT_ZIP_VALID_RECEIVER, zipCodeByCountry.getPostalCode());
+    }
+
+    @Test
+    void should_error_when_send_invalid_zip() {
         assertNotNull(getRestTemplate());
         assertNotNull(service);
         assertThrows(IllegalArgumentException.class, () -> service.findZipCodeByCountry(INVALID_ZIP_CODE_DTO));
     }
 
     @Test
-    void should_be_error_when_send_invalid_country_br_service() {
+    void should_error_when_send_invalid_country() {
         assertNotNull(getRestTemplate());
         assertNotNull(service);
         assertThrows(IllegalArgumentException.class, () -> service.findZipCodeByCountry(INVALID_COUNTRY_DTO));
     }
 
     @Test
-    void should_be_error_when_send_invalid_zip_and_country_br_service() {
+    void should_error_when_send_invalid_zip_and_country() {
         assertNotNull(getRestTemplate());
         assertNotNull(service);
         assertThrows(IllegalArgumentException.class, () -> service.findZipCodeByCountry(INVALID_ZIP_COUNTRY_DTO));
     }
 
-
     @Test
-    void should_be_error_when_send_not_found_country_br_service() {
+    void should_error_when_send_not_found_zip() {
         assertNotNull(getRestTemplate());
         assertNotNull(service);
         assertThrows(NotFoundException.class, () -> service.findZipCodeByCountry(NOTFOUND_ZIP_CODE_DTO));
