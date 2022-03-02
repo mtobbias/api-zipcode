@@ -1,0 +1,35 @@
+application:
+  name: api-zipcode
+  description: api for find address by zip code, from Brazil or Portugal
+  version : 0.0.1
+  terms : /swagger-ui/
+  license : /swagger-ui/
+  url : https://api-zipcode.herokuapp.com/
+  contact.name : Marcelo Tobias
+  contact.url : https://github.com/mtobbias
+  contact.email : marcelo.tobbias@gmail.com
+  keys:
+      ptapi: ${pt-api:}
+logging:
+  level:
+    root: DEBUG
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+  api:
+    apicepcom:
+      url: https://ws.apicep.com/cep/
+      postfix: .json
+
+spring:
+  redis:
+    host: ${redis-host:}
+    port: ${redis-port}
+    username: ${redis-username:}
+    password: ${redis-password:}
+
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER

@@ -1,0 +1,28 @@
+version: '2'
+services:
+  api-zipcode:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    image: 'mtobbias/api-zipcode:0.0.1'
+    container_name: api-zipcode
+    ports:
+      - '8080:8080'
+    networks:
+      - utils-api-network
+  api-sonar:
+    image: sonarqube:community
+    ports:
+      - '9000:9000'
+    networks:
+      - utils-api-network
+  api-redis:
+    image: redis:alpine3.15
+    ports:
+      - '6379:6379'
+    networks:
+      - utils-api-network
+
+networks:
+  utils-api-network:
+    driver: bridge
