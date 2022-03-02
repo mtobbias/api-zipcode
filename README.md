@@ -9,9 +9,18 @@ and for a Portgual zip code i used api https://duminio.com/
 
 heroku.com
 
+use BR or PT 
+
+Zip code Brazil : 01001000
+Zip code Portugal : 4445246
+
 [https://api-zipcode.herokuapp.com/swagger-ui/](https://api-zipcode.herokuapp.com/swagger-ui/)
 
 ![enter image description here](assets/img001.png)
+
+![enter image description here](assets/img002.png)
+
+![enter image description here](assets/img003.png)
 
 **RUN SONAR**  
 mvn sonar:sonar -Dsonar.projectKey=api-zipcode -Dsonar.host.url=http://127.0.0.1:9000 -Dsonar.login=<YOUR_KEY>
