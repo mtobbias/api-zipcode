@@ -17,7 +17,7 @@
     <properties>
         <feign-jackson.version>10.12</feign-jackson.version>
         <hibernate-core.version>5.4.32.Final</hibernate-core.version>
-        <jackson-databind.version>2.13.1</jackson-databind.version>
+        <jackson-databind.version>2.13.2.1</jackson-databind.version>
         <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <lombok.version>1.18.22</lombok.version>
